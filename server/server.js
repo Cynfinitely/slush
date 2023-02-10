@@ -1,12 +1,16 @@
 const express = require('express');
 const slushRoutes = require('./src/slush/routes');
+const cors = require('cors');
+
 
 
 
 const app = express();
 const port = 5000;
 
+//middlewares
 app.use(express.json());
+app.use(cors());
 
 
 app.get('/', (req, res) => {
