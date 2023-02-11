@@ -56,7 +56,7 @@ const ToDo = () => {
     <Fragment>
       <div className="container px-6 py-12 h-full">
         <Fragment>
-          <h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          <h1 className="text-center text-xl font-bold leading-tight tracking-tight text-white md:text-2xl dark:text-white">
             Slush Todo List
           </h1>
           <form
@@ -83,7 +83,7 @@ const ToDo = () => {
               onChange={(e) => setUser_Id(e.target.value)}
               placeholder="User_id"
             />
-            <button className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ">
+            <button className="bg-[#cf0] hover:bg-white text-black font-bold py-2 px-4 border-b-4 border-[#cf0] hover:border-[#cf0] rounded">
               Add
             </button>
           </form>

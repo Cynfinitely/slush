@@ -13,7 +13,7 @@ function App() {
   return (
     <Fragment>
       <BrowserRouter>
-        <div className="flex flex-col h-screen justify-between">
+        <div className="flex flex-col h-screen justify-between bg-[#0a0b12]">
           <Navbar />
           <div className="flex flex-col justify-content items-center">
             <Routes>
