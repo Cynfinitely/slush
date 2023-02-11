@@ -23,8 +23,12 @@ const getTodoById = (req, res) => {
 };
 
 const addTodo = (req, res) => {
+    console.log(req.body);
+    
     const { title, description, user_id } = req.body;
     //add todo to database
+    console.log(title,user_id, description);
+
     pool.query(queries.addTodo, [title, description, user_id], (error, results) => {
         res.status(201).send('Todo added successfully');
     });
@@ -32,6 +36,8 @@ const addTodo = (req, res) => {
 
 const removeTodo = (req, res) => {
     const id = parseInt(req.params.id);
+    console.log("here is the id:",id);
+    
 
     pool.query(queries.getTodoById, [id], (error, results) => {
         const noTodoFound = !results.rows.length;
