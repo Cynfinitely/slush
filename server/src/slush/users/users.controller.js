@@ -1,5 +1,8 @@
 const pool = require('../../../db');
 const queries = require('./users.queries');
+const {hash} = require("bcrypt")
+const {sign} = require("jsonwebtoken")
+const { SECRET } = require('../constants')
 
 
 
@@ -72,6 +75,64 @@ const updateSlushUser = (req, res) => {
 
 }
 
+const signUser = async (req, res) => {
+    const { name, email, age, is_VC , password } = req.body;
+    try {
+      const hashedPassword = await hash(password, 10)
+  
+      await pool.query(queries.addSlushUser, [
+        name, email, age, is_VC, hashedPassword
+      ])
+  
+      return res.status(201).json({
+        success: true,
+        message: 'The registraion was succefull',
+      })
+    } catch (error) {
+      console.log(error.message)
+      return res.status(500).json({
+        error: error.message,
+      })
+    }
+};
+
+const loginUser = async (req, res) => {
+    let user = req.user
+
+    let payload = {
+      id: user.user_id,
+      email: user.email,
+    }
+  
+    try {
+      const token = await sign(payload, SECRET)
+  
+      return res.status(200).cookie('token', token, { httpOnly: true }).json({
+        success: true,
+        message: 'Logged in succefully',
+      })
+    } catch (error) {
+      console.log(error.message)
+      return res.status(500).json({
+        error: error.message,
+      })
+    }
+};
+
+const logoutUser = async (req, res) => {
+    try {
+        return res.status(200).clearCookie('token', { httpOnly: true }).json({
+          success: true,
+          message: 'Logged out succefully',
+        })
+      } catch (error) {
+        console.log(error.message)
+        return res.status(500).json({
+          error: error.message,
+        })
+      }
+    }
+
 
 module.exports = {
     getSlushUsers,
@@ -79,4 +140,7 @@ module.exports = {
     addSlushUser,
     removeSlushUser,
     updateSlushUser,
+    signUser,
+    loginUser,
+    logoutUser,
 };
