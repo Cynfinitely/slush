@@ -2,14 +2,13 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const access_token = localStorage.getItem("user");
+  const access_token = localStorage.getItem("isAuth");
   const token = access_token != null ? JSON.parse(access_token) : "";
 
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("access_token");
+    localStorage.removeItem("isAuth");
     navigate("/login");
   };
 
@@ -39,7 +38,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="flex items-center md:ml-12">
-        {token.userToken ? (
+        {token ? (
           <button
             onClick={handleLogout}
             className="ml-8 inline-flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-base font-medium text-indigo-800 shadow-sm hover:bg-gray-300">

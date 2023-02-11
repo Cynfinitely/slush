@@ -31,9 +31,14 @@ const loginFieldsCheck = check('email').custom(async (value, { req }) => {
     throw new Error('Email does not exists.')
   }
 
-  const validPassword = await compare(req.body.password, user.rows[0].password)
+  //DEBUG
+  // console.log("HERE IS PASSWORD:", req.body.password)
+  // console.log("HERE IS user check pass:", user.rows[0].password)
+  // console.log("comparison result:", (!req.body.password === user.rows[0].password) )
 
-  if (!validPassword) {
+
+
+  if (!req.body.password === user.rows[0].password) {
     throw new Error('Wrong password')
   }
 

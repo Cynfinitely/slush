@@ -99,6 +99,9 @@ const signUser = async (req, res) => {
 const loginUser = async (req, res) => {
     let user = req.user
 
+    console.log("here is the user:",user)
+    
+
     let payload = {
       id: user.user_id,
       email: user.email,
