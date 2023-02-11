@@ -12,9 +12,9 @@ const getInterests = (req, res) => {
 
 };
 
-const getInterestById = (req, res) => {
-    const id = parseInt(req.params.id);
-    pool.query(queries.getInterestById, [id], (error, results) => {
+const getInterestByUserId = (req, res) => {
+    const id = parseInt(req.params.user_id);
+    pool.query(queries.getInterestByUserId, [id], (error, results) => {
 
         if (error) throw error;
         res.status(200).json(results.rows);
@@ -67,7 +67,7 @@ const updateInterest = (req, res) => {
 
 module.exports = {
     getInterests,
-    getInterestById,
+    getInterestByUserId,
     addInterest,
     removeInterest,
     updateInterest,

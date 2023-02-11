@@ -2,22 +2,28 @@ import React, { Fragment, useState } from "react";
 
 const EditTodo = ({ todo }: any) => {
   const [description, setDescription] = useState(todo.description);
+  const [title, setTitle] = useState(todo.title);
+  const [user_id, setUser_Id] = useState(todo.user_id);
+  const [todos, setTodos] = useState([]);
+
   const [showModal, setShowModal] = useState(false);
 
-  //edit description function
+  //edit todo function
 
-  const updateDescription = async (e: any) => {
+  const updateToDo = async (e: any) => {
     e.preventDefault();
     try {
-      const body = { description };
+      const body = { title, description, user_id };
       const response = await fetch(
-        `http://localhost:5000/api/v1/slush/todos/${todo.todo_id}`,
+        `http://localhost:5000/api/v1/slush/todos/${todo.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         }
       );
+      window.location.href = "/todo";
+      // await setShowModal(false);
     } catch (err: any) {
       console.error(err.message);
     }
@@ -43,43 +49,34 @@ const EditTodo = ({ todo }: any) => {
                 onClick={() => setShowModal(false)}></div>
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                  <div className="mt-3 sm:flex">
-                    <div className="flex items-center justify-center flex-none w-12 h-12 mx-auto bg-red-100 rounded-full">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6 text-red-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path
-                          fillRule="evenodd"
-                          d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <div className="mt-2 text-center sm:ml-4 sm:text-left">
-                      <h4 className="text-lg font-medium text-gray-800">
-                        Delete account ?
-                      </h4>
-                      <p className="mt-2 text-[15px] leading-relaxed text-gray-500">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                      </p>
-                      <div className="items-center gap-2 mt-3 sm:flex">
-                        <button
-                          className="w-full mt-2 p-2.5 flex-1 text-white bg-red-600 rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
-                          onClick={() => setShowModal(false)}>
-                          Delete
-                        </button>
-                        <button
-                          className="w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600 focus:ring-2"
-                          onClick={() => setShowModal(false)}>
-                          Cancel
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  <form
+                    className="flex flex-col mt-5"
+                    onSubmit={updateToDo}>
+                    <input
+                      type="text"
+                      className="border border-indigo-600"
+                      defaultValue={todo.title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      placeholder="Title"
+                    />
+                    <input
+                      type="text"
+                      className="border border-indigo-600"
+                      defaultValue={todo.description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      placeholder="Description"
+                    />
+                    <input
+                      type="text"
+                      className="border border-indigo-600"
+                      defaultValue={todo.user_id}
+                      onChange={(e) => setUser_Id(e.target.value)}
+                      placeholder="User_id"
+                    />
+                    <button className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ">
+                      Edit
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>

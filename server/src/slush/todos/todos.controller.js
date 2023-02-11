@@ -55,13 +55,15 @@ const removeTodo = (req, res) => {
 const updateTodo = (req, res) => {
     const id = parseInt(req.params.id);
     const { title, description, user_id } = req.body;
+    console.log(id, req.body);
+    
 
     pool.query(queries.getTodoById, [id], (error, results) => {
         const noTodoFound = !results.rows.length;
         if (noTodoFound) {
             res.send('Todo not found');
         }
-        pool.query(queries.updateTodo, [title, description, user_id], (error, results) => {
+        pool.query(queries.updateTodo, [title, description, user_id, id], (error, results) => {
             if (error) throw error;
             res.status(200).send('Todo updated successfully');
         });

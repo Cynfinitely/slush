@@ -32,7 +32,7 @@ router.put('/todos/:id', todosController.updateTodo);
 
 //interests routes
 router.get('/interests/', interestsController.getInterests);
-router.get('/interests/:id', interestsController.getInterestById);
+router.get('/interests/:id', interestsController.getInterestByUserId);
 router.post('/interests/', interestsController.addInterest);
 router.delete('/interests/:id', interestsController.removeInterest);
 router.put('/interests/:id', interestsController.updateInterest);
