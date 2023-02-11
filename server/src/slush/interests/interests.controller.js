@@ -13,7 +13,7 @@ const getInterests = (req, res) => {
 };
 
 const getInterestByUserId = (req, res) => {
-    const id = parseInt(req.params.user_id);
+    const id = parseInt(req.params.id);
     pool.query(queries.getInterestByUserId, [id], (error, results) => {
 
         if (error) throw error;

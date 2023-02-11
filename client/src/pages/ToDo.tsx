@@ -91,18 +91,30 @@ const ToDo = () => {
         <Fragment>
           {" "}
           <table className="table mt-5 text-center w-full">
-            <thead>
+            <thead className="border-b bg-gray-800">
               <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Options</th>
+                <th className="text-sm font-medium text-white px-6 py-4">
+                  Title
+                </th>
+                <th className="text-sm font-medium text-white px-6 py-4">
+                  Description
+                </th>
+                <th className="text-sm font-medium text-white px-6 py-4">
+                  Options
+                </th>
               </tr>
             </thead>
             <tbody>
               {todos.map((todo: any) => (
-                <tr key={todo.id}>
-                  <td>{todo.title}</td>
-                  <td>{todo.description}</td>
+                <tr
+                  key={todo.id}
+                  className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {todo.title}
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {todo.description}
+                  </td>
                   <td className="flex flex-row justify-center">
                     <EditTodo todo={todo} />
                     <button
