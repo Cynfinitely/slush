@@ -49,26 +49,42 @@ const EditTodo = ({ todo }: any) => {
                 onClick={() => setShowModal(false)}></div>
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
+                  <h1>Edit To-Do</h1>
                   <form
                     className="flex flex-col mt-5"
                     onSubmit={updateToDo}>
+                    <label
+                      htmlFor=""
+                      className="text-left">
+                      Title
+                    </label>
                     <input
                       type="text"
-                      className="border border-indigo-600"
+                      className="border border-indigo-600 text-center mb-2"
                       defaultValue={todo.title}
                       onChange={(e) => setTitle(e.target.value)}
                       placeholder="Title"
                     />
+                    <label
+                      htmlFor=""
+                      className="text-left">
+                      Description
+                    </label>
                     <input
                       type="text"
-                      className="border border-indigo-600"
+                      className="border border-indigo-600 text-center mb-2"
                       defaultValue={todo.description}
                       onChange={(e) => setDescription(e.target.value)}
                       placeholder="Description"
                     />
+                    <label
+                      htmlFor=""
+                      className="text-left">
+                      User ID
+                    </label>
                     <input
                       type="text"
-                      className="border border-indigo-600"
+                      className="border border-indigo-600 text-center mb-2"
                       defaultValue={todo.user_id}
                       onChange={(e) => setUser_Id(e.target.value)}
                       placeholder="User_id"

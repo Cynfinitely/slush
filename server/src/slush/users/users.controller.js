@@ -109,8 +109,11 @@ const loginUser = async (req, res) => {
   
     try {
       const token = await sign(payload, SECRET)
+      console.log(token)
+      
   
       return res.status(200).cookie('token', token, { httpOnly: true }).json({
+        token: token,
         success: true,
         message: 'Logged in succefully',
       })

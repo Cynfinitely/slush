@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const userAuthFromLocalStorage = () => {
   const isAuth = localStorage.getItem('isAuth')
+  const token = localStorage.getItem('token')
+
 
   if (isAuth && JSON.parse(isAuth) === true) {
     return true

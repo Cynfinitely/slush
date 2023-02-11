@@ -9,7 +9,8 @@ export async function onRegistration(registrationData: any) {
 }
 
 export async function onLogin(loginData: any) {
-  return await axios.post('http://localhost:5000/api/v1/slush/login', loginData)
+  await axios.post('http://localhost:5000/api/v1/slush/login', loginData).then(function (response) {console.log("here is :",response)})
+
 }
 
 export async function onLogout() {

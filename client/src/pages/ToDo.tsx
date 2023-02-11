@@ -60,31 +60,31 @@ const ToDo = () => {
             Slush Todo List
           </h1>
           <form
-            className="flex mt-5"
+            className="flex flex-row justify-center mt-5 "
             onSubmit={onSubmitForm}>
             <input
               type="text"
-              className="border border-indigo-600"
+              className="border border-indigo-600 text-center"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Title"
             />
             <input
               type="text"
-              className="border border-indigo-600"
+              className="border border-indigo-600 text-center"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Description"
             />
             <input
               type="text"
-              className="border border-indigo-600"
+              className="border border-indigo-600 text-center"
               value={user_id}
               onChange={(e) => setUser_Id(e.target.value)}
               placeholder="User_id"
             />
             <button className="bg-[#cf0] hover:bg-white text-black font-bold py-2 px-4 border-b-4 border-[#cf0] hover:border-[#cf0] rounded">
-              Add
+              Add To-Do
             </button>
           </form>
         </Fragment>
