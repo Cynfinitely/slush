@@ -14,15 +14,12 @@ const EditTodo = ({ todo }: any) => {
     e.preventDefault();
     try {
       const body = { title, description, user_id };
-      const response = await fetch(
-        `http://localhost:5000/api/v1/slush/todos/${todo.id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }
-      );
-      window.location.href = "/todo";
+      const response = await fetch(`/api/v1/slush/todos/${todo.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      // window.location.href = "/todo";
       // await setShowModal(false);
     } catch (err: any) {
       console.error(err.message);

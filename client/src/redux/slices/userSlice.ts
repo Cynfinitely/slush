@@ -6,7 +6,7 @@ import {
 import axios from "axios";
 import { User, UsersState } from "../../types";
 
-const baseURL = "http://localhost:5000/api/v1/slush/users";
+const baseURL = "/api/v1/slush/users";
 
 const initialUserState: UsersState = {
     users: [],
@@ -28,7 +28,7 @@ export const fetchUsers = createAsyncThunk(
 export const onLogin = createAsyncThunk(
   "users/login",
   async (loginData:any) => {
-    const response = await axios.post('http://localhost:5000/api/v1/slush/login', loginData)
+    const response = await axios.post('/api/v1/slush/login', loginData)
     const user = await response.data.user;
     return user;
   });

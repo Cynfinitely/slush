@@ -16,14 +16,11 @@ const ToDo = () => {
     e.preventDefault();
     try {
       const body = { title, description, user_id };
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/slush/todos/",
-        {
-          title,
-          description,
-          user_id,
-        }
-      );
+      const response = await axios.post("/api/v1/slush/todos/", {
+        title,
+        description,
+        user_id,
+      });
       getTodos();
     } catch (err: any) {
       console.error(err.message);
@@ -31,9 +28,7 @@ const ToDo = () => {
   };
   const deleteTodo = async (id: any) => {
     try {
-      const deleteTodo = await axios.delete(
-        `http://localhost:5000/api/v1/slush/todos/${id}`
-      );
+      const deleteTodo = await axios.delete(`/api/v1/slush/todos/${id}`);
 
       setTodos(todos.filter((todo: any) => todo.id !== id));
     } catch (err: any) {
@@ -43,7 +38,7 @@ const ToDo = () => {
 
   const getTodos = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/v1/slush/todos/");
+      const response = await fetch("/api/v1/slush/todos/");
       const jsonData = await response.json();
 
       setTodos(jsonData);

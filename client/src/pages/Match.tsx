@@ -13,7 +13,7 @@ const Match = () => {
 
   const getUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/v1/slush/users");
+      const response = await fetch("/api/v1/slush/users");
       const jsonData = await response.json();
       setUsers(jsonData);
       console.log(jsonData);
@@ -24,9 +24,7 @@ const Match = () => {
 
   const getAllInterests = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/v1/slush/interests/`
-      );
+      const response = await fetch(`/api/v1/slush/interests/`);
       const jsonData = await response.json();
       setInterests(jsonData);
       await console.log("here is the result:", interests);
