@@ -2,6 +2,6 @@
 
 ## To-Do
 
-- [ ] Planning
-- [ ] Initiate
-- [ ] Outline
+- [ ] Send email button
+- [ ] More styling
+- [ ] Make improved Authentication
