@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { onRegistration } from "../api/auth";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -13,6 +14,7 @@ const Register = () => {
   });
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const onChange = (e: any) => {
     let updatedValue = e.currentTarget.value;
@@ -30,6 +32,7 @@ const Register = () => {
       const { data } = await onRegistration(values);
       setSuccess(data.message);
       setValues({ name: "", email: "", age: "", is_VC: "", password: "" });
+      setTimeout(() => navigate("/login"), 200);
     } catch (error: any) {
       setError(error.response.data.errors[0].msg);
     }
