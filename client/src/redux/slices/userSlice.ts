@@ -25,7 +25,16 @@ export const fetchUsers = createAsyncThunk(
     }
   );
 
-  export const userSlice = createSlice({
+export const onLogin = createAsyncThunk(
+  "users/login",
+  async (loginData:any) => {
+    const response = await axios.post('http://localhost:5000/api/v1/slush/login', loginData)
+    const user = await response.data.user;
+    return user;
+  });
+
+
+export const userSlice = createSlice({
     name: "user",
     initialState: initialUserState,
     reducers: {
@@ -47,6 +56,16 @@ export const fetchUsers = createAsyncThunk(
           state.users = action.payload;
         }
       );
+      builder.addCase(onLogin.rejected, (state, action) => {
+        state.isLoading = false;
+      });
+      builder.addCase(onLogin.pending, (state, action) => {
+        state.isLoading = true;
+      });
+      builder.addCase(onLogin.fulfilled, (state, action: PayloadAction<User>) => {
+        state.isLoading = false;
+        state.user = action.payload;
+      });
     },
   });
   

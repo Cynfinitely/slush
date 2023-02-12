@@ -7,6 +7,8 @@ import Slush from "../assets/slush.png";
 
 const Main = () => {
   const Users = useSelector((state: RootState) => state.user.users);
+  const User = useSelector((state: RootState) => state.user.user);
+  console.log("HERE IS THE USER", User);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchUsers());

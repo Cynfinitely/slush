@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import EditTodo from "../components/EditTodo";
+import { AppDispatch, RootState } from "../redux/store";
 
 const ToDo = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [user_id, setUser_Id] = useState("");
   const [todos, setTodos] = useState([]);
+  const User = useSelector((state: RootState) => state.user.user);
+  const dispatch = useDispatch<AppDispatch>();
 
   const onSubmitForm = async (e: any) => {
     e.preventDefault();
@@ -79,7 +83,7 @@ const ToDo = () => {
             <input
               type="text"
               className="border border-indigo-600 text-center"
-              value={user_id}
+              value={User.id}
               onChange={(e) => setUser_Id(e.target.value)}
               placeholder="User_id"
             />

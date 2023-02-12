@@ -1,4 +1,5 @@
 export type User = {
+  id?: number;
   name?: string;
   email?: string;
   age?: number;
@@ -8,7 +9,7 @@ export type User = {
 
 export interface UsersState {
   users: User[];
-  user: null | User;
+  user: null | User | string | any;
   isLoading: boolean;
   error: null | string;
 }

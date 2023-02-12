@@ -1,11 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import { onLogin } from "../api/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authenticateUser } from "../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import { AppDispatch, RootState } from "../redux/store";
+import { onLogin } from "../redux/slices/userSlice";
 
 const Login = () => {
+  const User = useSelector((state: RootState) => state.user.user);
+  const dispatch = useDispatch<AppDispatch>();
+  console.log("HERE IS THE USERS", User);
+
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -16,13 +21,11 @@ const Login = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-
-  const dispatch = useDispatch();
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      await onLogin(values);
+      await dispatch(onLogin(values));
       dispatch(authenticateUser());
       localStorage.setItem("isAuth", "true");
       navigate("/main");
