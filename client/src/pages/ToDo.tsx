@@ -83,7 +83,7 @@ const ToDo = () => {
             <input
               type="text"
               className="border border-indigo-600 text-center"
-              value={User.id}
+              value={User.user_id}
               onChange={(e) => setUser_Id(e.target.value)}
               placeholder="User_id"
             />
