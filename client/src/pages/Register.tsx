@@ -15,7 +15,12 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
 
   const onChange = (e: any) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    let updatedValue = e.currentTarget.value;
+
+    if (updatedValue === "true" || updatedValue === "false") {
+      updatedValue = JSON.parse(updatedValue);
+    }
+    setValues({ ...values, [e.target.name]: updatedValue });
   };
 
   const onSubmit = async (e: any) => {
