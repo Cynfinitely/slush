@@ -1,4 +1,5 @@
 # slush
+![](https://github.com/Cynfinitely/slush/blob/master/slushprev.gif)
 
 ## To-Do
 
